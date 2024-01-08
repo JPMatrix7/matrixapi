@@ -1,0 +1,61 @@
+@startuml
+
+/'Esse diagrama é a representação de um ecommerce simples de PIZZARIA, apenas para iniciar o treinamento de API Rest Quarkus'/
+
+class DefaultEntity{
+    - id: Long
+}
+
+class Usuario{ 
+    - nome: String
+    - idade: Integer 
+    - email: String
+    - cpf: String
+    - telefone: String
+}
+
+class Produto{
+    - id: Long
+    - nome: String
+    - estoque: Integer
+    - descricao: String
+}
+
+class Venda{
+    - id: Long
+    - valorTotal: BigDecimal
+    - desconto: BigDecimal
+    - data: LocalDate
+}
+
+class ItemVenda{
+    - id: Long
+    - quantidade: Integer
+    - valorUnitario: BigDecimal
+    - valorTotal: BigDecimal
+}
+
+class Pagamento{
+    - id: Long
+    - cpf: String
+    - valor: BigDecimal
+}
+
+class Endereco{
+    - id: Long
+    - quadra: String
+    - lote: Integer
+    - rua: String
+    - setor: String
+    - complemento: String
+}
+
+Usuario "1" --> "*" Endereco
+Usuario <|-- DefaultEntity
+
+Venda "1" <|-- "*" ItemVenda
+Venda "1" <|-- "1" Pagamento
+
+ItemVenda "1" <|-- "1" Produto
+
+@enduml
